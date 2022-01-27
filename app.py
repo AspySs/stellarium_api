@@ -91,7 +91,6 @@ def affirm():
     else:
         c.execute(f"SELECT affirm_id FROM Affirmations_shown WHERE user_id="+user_id)
         except_nums = c.fetchall()
-        print(except_nums)
         ran_nums = list(range(1, max[0]+1))
         for i in range(0, len(except_nums)):
             ran_nums.remove(except_nums[i][0])
