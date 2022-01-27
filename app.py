@@ -98,7 +98,10 @@ def affirm():
         try:
             af_id = random.choice(ran_nums)
         except IndexError:
-            return "Not enough affirmations to show"
+            c.execute(f"DELETE FROM Affirmations_shown WHERE user_id="+user_id)
+            conn.commit()
+            print("Not enough affirmations to show, restart table")
+            af_id = randint(1, max[0])
     c.execute(f"SELECT text FROM Affirmations WHERE id=" + str(af_id))
     text = c.fetchone()
     c.execute(f"SELECT picture FROM Affirmations WHERE id=" + str(af_id))
