@@ -141,7 +141,7 @@ def pifagor():
     sql = "SELECT text FROM pifagor_square WHERE num = ? AND num_count = ?"
     for i in range(1, 10):
         c.execute(sql, (i, result[i]))
-        text0 = c.fetchall()
+        text0 = c.fetchone()
         text.append(text0[0])
     output = {
         "1": {
