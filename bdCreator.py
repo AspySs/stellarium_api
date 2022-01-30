@@ -19,4 +19,8 @@ def tables_check():
     c.execute("CREATE TABLE IF NOT EXISTS Affirmations_shown (user_id INTEGER PRIMARY KEY, affirm_id INTEGER)")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
+    print(Fore.BLUE + "Создание таблицы с квадратом пифагора" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS pifagor_square (num INTEGER, num_count INTEGER, text TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
     #создали
