@@ -23,4 +23,43 @@ def tables_check():
     c.execute("CREATE TABLE IF NOT EXISTS pifagor_square (num INTEGER, num_count INTEGER, text TEXT )")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
+
+    # 1 - capricorn
+    # 2 - taurus
+    # 3 - virgo
+    # 4 - aquarius
+    # 5 - gemini
+    # 6 - libra
+    # 7 - pisces
+    # 8 - cancer
+    # 9 - scorpio
+    # 10 - aries
+    # 11 - leo
+    # 12 - sagittarius
+
+    print(Fore.BLUE + "Создание таблицы с гороскопами today" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS today_horoscopes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, love TEXT, common TEXT, health TEXT, business TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+    print(Fore.BLUE + "Создание таблицы с гороскопами next_day" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS next_day_horoscopes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, love TEXT, common TEXT, health TEXT, business TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+    print(Fore.BLUE + "Создание таблицы с гороскопами week" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS week_horoscopes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, love TEXT, common TEXT, health TEXT, business TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+    print(Fore.BLUE + "Создание таблицы с гороскопами month" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS month_horoscopes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, love TEXT, common TEXT, health TEXT, business TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+    print(Fore.BLUE + "Создание таблицы с гороскопами year" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS year_horoscopes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, love TEXT, common TEXT, health TEXT, business TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+
+    print(Fore.BLUE + "Создание таблицы с гороскопами характеристика" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS character_horoscopes (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, charact TEXT, love TEXT, career TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
     #создали
