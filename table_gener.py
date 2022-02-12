@@ -11,6 +11,14 @@ def gener_pifag():
             add = c.execute(sql, (i, j, "XYU"))
             conn.commit()
 
+def gener_taro_cards():
+    conn = sqlite3.connect('stell.db')
+    c = conn.cursor()
+    sql = "INSERT INTO taro_cards (name, pic_name, desc_one_card, desc_day_card, desc_first_of_three_cards, desc_second_of_three_cards, desc_third_of_three_cards, desc_first_of_four_cards, desc_second_of_four_cards, desc_third_of_four_cards, desc_fourth_of_four_cards, desc_first_of_seven_cards, desc_second_of_seven_cards, desc_third_of_seven_cards, desc_fourth_of_seven_cards, desc_fifth_of_seven_cards, desc_sixth_of_seven_cards, desc_seventh_of_seven_cards) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    for i in range(0, 40):
+        add = c.execute(sql, ("YA", "POMNU", "PENIS", "BOLSHOI", "UBLUDOK", "PREKRATI", "HUARIT", "LES", "VASHU", "MAMU", "I", "TUT", "I", "TAM", "TVOUYA", "MAMA", "FANTASTICO", "KONEC"))
+        conn.commit()
+
 def gener_horoscopes():
     conn = sqlite3.connect('stell.db')
     today_horoscope(conn)

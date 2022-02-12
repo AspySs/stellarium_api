@@ -62,4 +62,9 @@ def tables_check():
     c.execute("CREATE TABLE IF NOT EXISTS character_horoscopes (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, charact TEXT, love TEXT, career TEXT )")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
+
+    print(Fore.BLUE + "Создание таблицы с картами таро" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS taro_cards (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, pic_name TEXT, desc_one_card TEXT, desc_day_card TEXT, desc_first_of_three_cards TEXT, desc_second_of_three_cards TEXT, desc_third_of_three_cards TEXT, desc_first_of_four_cards TEXT, desc_second_of_four_cards TEXT, desc_third_of_four_cards TEXT, desc_fourth_of_four_cards TEXT, desc_first_of_seven_cards TEXT, desc_second_of_seven_cards TEXT, desc_third_of_seven_cards TEXT, desc_fourth_of_seven_cards TEXT, desc_fifth_of_seven_cards TEXT, desc_sixth_of_seven_cards TEXT, desc_seventh_of_seven_cards TEXT)")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
     #создали
