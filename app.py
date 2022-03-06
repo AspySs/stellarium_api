@@ -1,11 +1,7 @@
-import random
 from flask import Flask
 from flask import request
 import sqlite3
-import colorama
-from random import randint
-from colorama import Fore, Back, Style
-import json
+from colorama import Fore
 
 import table_gener
 import bdCreator
@@ -15,12 +11,14 @@ from horoscopes import horoscope_realization
 from pifagorSquare import pifagor_realization
 from affirmations import affirmations_realization
 from registration import register_realization
+from moon_cal import moon_calendar_realization
 #realizations
 
 bdCreator.tables_check()
 #table_gener.gener_pifag()
 #table_gener.gener_horoscopes()
 #table_gener.gener_taro_cards()
+#table_gener.moon_gener()
 app = Flask(__name__)
 
 
@@ -76,6 +74,10 @@ def horoscope():
 @app.route('/taro/', methods=['GET'])
 def taro():
     return (taro_realization())
+
+@app.route('/moonCalendar/', methods=['GET'])
+def moon():
+    return (moon_calendar_realization())
 
 
 if __name__ == '__main__':

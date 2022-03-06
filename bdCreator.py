@@ -1,6 +1,5 @@
 import sqlite3
-import colorama
-from colorama import Fore, Back, Style
+from colorama import Fore
 
 def tables_check():
     #создаем базу данных
@@ -65,6 +64,11 @@ def tables_check():
 
     print(Fore.BLUE + "Создание таблицы с картами таро" + " \n")
     c.execute("CREATE TABLE IF NOT EXISTS taro_cards (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, pic_name TEXT, desc_one_card TEXT, desc_day_card TEXT, desc_first_of_three_cards TEXT, desc_second_of_three_cards TEXT, desc_third_of_three_cards TEXT, desc_first_of_four_cards TEXT, desc_second_of_four_cards TEXT, desc_third_of_four_cards TEXT, desc_fourth_of_four_cards TEXT, desc_first_of_seven_cards TEXT, desc_second_of_seven_cards TEXT, desc_third_of_seven_cards TEXT, desc_fourth_of_seven_cards TEXT, desc_fifth_of_seven_cards TEXT, desc_sixth_of_seven_cards TEXT, desc_seventh_of_seven_cards TEXT)")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+
+    print(Fore.BLUE + "Создание таблицы лунного календаря" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS moon_calendar (date TEXT PRIMARY KEY NOT NULL, phase TEXT NOT NULL, characteristics TEXT NOT NULL, health TEXT NOT NULL, relations TEXT NOT NULL, business TEXT NOT NULL)")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
     #создали

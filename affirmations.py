@@ -1,11 +1,8 @@
 import random
-from flask import Flask
 from flask import request
 import sqlite3
-import colorama
 from random import randint
-from colorama import Fore, Back, Style
-import json
+from colorama import Fore
 
 def affirmations_realization():
     user_id = request.args.get('id')

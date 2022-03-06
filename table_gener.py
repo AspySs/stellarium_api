@@ -1,6 +1,4 @@
 import sqlite3
-import colorama
-from colorama import Fore, Back, Style
 
 def gener_pifag():
     conn = sqlite3.connect('stell.db')
@@ -68,4 +66,13 @@ def character_horoscopes(conn):
     sql = "INSERT INTO character_horoscopes (description, charact, love, career) VALUES(?, ?, ?, ?)"
     for i in range(1, 13):
         add = c.execute(sql, ("YA", "POMNU", "PENIS", "BOLSHOI"))
+        conn.commit()
+
+def moon_gener():
+    conn = sqlite3.connect('stell.db')
+    c = conn.cursor()
+    sql = "INSERT INTO moon_calendar (date, phase, characteristics, health, relations, business) VALUES(?, ?, ?, ?, ?, ?)"
+    for i in range(1, 13):
+        d = 300 + i
+        add = c.execute(sql, (str(d), "full", "good", "g00d", "not bad", "jopa"))
         conn.commit()

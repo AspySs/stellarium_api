@@ -1,11 +1,6 @@
-import random
-from flask import Flask
 from flask import request
 import sqlite3
-import colorama
-from random import randint
-from colorama import Fore, Back, Style
-import json
+from colorama import Fore
 
 def register_realization():
     print(Fore.YELLOW + "Start Registration!")
