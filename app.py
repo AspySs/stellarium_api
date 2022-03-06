@@ -3,15 +3,15 @@ from flask import request
 import sqlite3
 from colorama import Fore
 
-import table_gener
+import utility.table_gener
 import bdCreator
 #realizations
-from taro import taro_realization
-from horoscopes import horoscope_realization
-from pifagorSquare import pifagor_realization
-from affirmations import affirmations_realization
-from registration import register_realization
-from moon_cal import moon_calendar_realization
+from realizations.taro import taro_realization
+from realizations.horoscopes import horoscope_realization
+from realizations.pifagorSquare import pifagor_realization
+from realizations.affirmations import affirmations_realization
+from realizations.registration import register_realization
+from realizations.moon_cal import moon_calendar_realization
 #realizations
 
 bdCreator.tables_check()
@@ -20,8 +20,6 @@ bdCreator.tables_check()
 #table_gener.gener_taro_cards()
 #table_gener.moon_gener()
 app = Flask(__name__)
-
-
 
 @app.route('/')
 def hello_world():
