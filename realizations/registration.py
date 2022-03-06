@@ -10,12 +10,12 @@ def register_realization():
     print(Fore.YELLOW + "Birth date: " + date)
     sex = request.args.get('sex')
     print(Fore.YELLOW + "Sex: " + date)
-    #подключаемся к БД
+    # подключаемся к БД
     print(Fore.BLUE + "Подключение к БД....")
-    conn = sqlite3.connect("stell.db") # или :memory: чтобы сохранить в RAM
+    conn = sqlite3.connect("stell.db")
     c = conn.cursor()
     print(Fore.BLUE + "Успешно!")
-    #подключили
+    # подключили
     try:
         print(Fore.GREEN+ "Добавление записи в бд...")
         add = c.execute(f"INSERT INTO Users (sex, user_name, date_of_birth ) VALUES( ?, ?, ?)", (sex, username, date))

@@ -1,6 +1,7 @@
-from flask import request
 import sqlite3
+
 from colorama import Fore
+from flask import request
 
 def moon_calendar_realization():
     date = request.args.get('date')

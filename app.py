@@ -12,6 +12,7 @@ from realizations.pifagorSquare import pifagor_realization
 from realizations.affirmations import affirmations_realization
 from realizations.registration import register_realization
 from realizations.moon_cal import moon_calendar_realization
+from parse.horoscope_add_to_bd import update_horoscope_table
 #realizations
 
 bdCreator.tables_check()
@@ -19,6 +20,7 @@ bdCreator.tables_check()
 #table_gener.gener_horoscopes()
 #table_gener.gener_taro_cards()
 #table_gener.moon_gener()
+update_horoscope_table()
 app = Flask(__name__)
 
 @app.route('/')

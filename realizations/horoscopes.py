@@ -4,12 +4,12 @@ from colorama import Fore
 
 def horoscope_realization():
     sign = int(request.args.get('sign'))
-    #подключаемся к БД
+    # подключаемся к БД
     print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
     print(Fore.BLUE + "Успешно!")
-    #подключили
+    # подключили
     name = ["null", "capricorn", "taurus", "virgo", "aquarius", "gemini", "libra", "pisces", "cancer", "scorpio", "aries", "leo", "sagittarius"]
     type = ["love", "common", "health", "business"]
     today = []

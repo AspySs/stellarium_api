@@ -1,20 +1,20 @@
 import random
-from flask import request
 import sqlite3
 from colorama import Fore
+from flask import request
 
 def taro_realization():
     count = int(request.args.get('count'))
     if((count != 0) and (count != 1) and (count != 3) and (count != 4) and (count != 7)):
         return "Invalid count of cards error...."
-    #подключаемся к БД
+    # подключаемся к БД
     print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
     print(Fore.BLUE + "Успешно!")
+    # подключили
     c.execute(f"SELECT MAX(id) FROM taro_cards")
     max_ = c.fetchone()
-    #подключили
     id_list = list(range(1, max_[0]+1))
     if((count!= 0) and (count != 1)):
         cards_id = []

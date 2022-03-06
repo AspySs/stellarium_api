@@ -1,8 +1,15 @@
 import sqlite3
 
+from colorama import Fore
+
+
 def gener_pifag():
-    conn = sqlite3.connect('stell.db')
+    # подключаемся к БД
+    print(Fore.BLUE + "Подключение к БД....")
+    conn = sqlite3.connect("stell.db")
     c = conn.cursor()
+    print(Fore.BLUE + "Успешно!")
+    # подключили
     sql = "INSERT INTO pifagor_square (num, num_count, text) VALUES( ?, ?, ?)"
     for i in range(1, 10):
         for j in range(0, 11):
@@ -10,15 +17,18 @@ def gener_pifag():
             conn.commit()
 
 def gener_taro_cards():
-    conn = sqlite3.connect('stell.db')
+    # подключаемся к БД
+    print(Fore.BLUE + "Подключение к БД....")
+    conn = sqlite3.connect("stell.db")
     c = conn.cursor()
+    print(Fore.BLUE + "Успешно!")
+    # подключили
     sql = "INSERT INTO taro_cards (name, pic_name, desc_one_card, desc_day_card, desc_first_of_three_cards, desc_second_of_three_cards, desc_third_of_three_cards, desc_first_of_four_cards, desc_second_of_four_cards, desc_third_of_four_cards, desc_fourth_of_four_cards, desc_first_of_seven_cards, desc_second_of_seven_cards, desc_third_of_seven_cards, desc_fourth_of_seven_cards, desc_fifth_of_seven_cards, desc_sixth_of_seven_cards, desc_seventh_of_seven_cards) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
     for i in range(0, 40):
         add = c.execute(sql, ("YA", "POMNU", "PENIS", "BOLSHOI", "UBLUDOK", "PREKRATI", "HUARIT", "LES", "VASHU", "MAMU", "I", "TUT", "I", "TAM", "TVOUYA", "MAMA", "FANTASTICO", "KONEC"))
         conn.commit()
 
-def gener_horoscopes():
-    conn = sqlite3.connect('stell.db')
+def gener_horoscopes(conn):
     today_horoscope(conn)
     next_day_horoscope(conn)
     week_horoscope(conn)
@@ -69,8 +79,12 @@ def character_horoscopes(conn):
         conn.commit()
 
 def moon_gener():
-    conn = sqlite3.connect('stell.db')
+    # подключаемся к БД
+    print(Fore.BLUE + "Подключение к БД....")
+    conn = sqlite3.connect("stell.db")
     c = conn.cursor()
+    print(Fore.BLUE + "Успешно!")
+    # подключили
     sql = "INSERT INTO moon_calendar (date, phase, characteristics, health, relations, business) VALUES(?, ?, ?, ?, ?, ?)"
     for i in range(1, 13):
         d = 300 + i

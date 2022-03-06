@@ -90,6 +90,8 @@ def parse():
         html = get_html(url_character)
         horoscope_character.extend(get_content_character(html.text))
 
+
+    #ЕБАНЫЙ СЫР РАБОТАЕТ - НЕ ТРОГАЙ!!
     path = ["horo_txts/classic/", "horo_txts/char/"]
     time = ["today_", "tomorrow_", "week_", "month_", "year_"]
     files = ["main.txt", "business.txt", "health.txt", "love.txt"]
@@ -128,7 +130,4 @@ def parse():
                 j = 0
         j = 0
         signs_arr = signs_arr + 1
-
-
-
-parse()
+#этот кусок был написан на коленке хрен знает как, я не ебу как он работает и разбираться не буду
