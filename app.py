@@ -6,6 +6,7 @@ from colorama import Fore
 import utility.table_gener
 import bdCreator
 #realizations
+from realizations.authorization import auth_realization
 from realizations.taro import taro_realization
 from realizations.horoscopes import horoscope_realization
 from realizations.pifagorSquare import pifagor_realization
@@ -30,6 +31,11 @@ def hello_world():
 @app.route('/register/', methods=['GET'])
 def registr():
     return (register_realization())
+
+@app.route('/auth/', methods=['GET'])
+def auth():
+    return (auth_realization())
+
 
 @app.route('/test/', methods=['GET'])
 def test():

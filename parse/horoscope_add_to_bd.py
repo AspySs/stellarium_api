@@ -6,7 +6,7 @@ import os
 
 
 def update_horoscope_table():
-    parse()
+    #parse()
     cur_path = os.path.dirname(__file__)
     # подключаемся к БД
     print(Fore.BLUE + "Подключение к БД....")
