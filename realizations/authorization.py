@@ -36,7 +36,8 @@ def auth_realization():
                 "name": data[2],
                 "date": data[3],
                 "sex": data[4],
-                "sign": data[5]
+                "sign": data[5],
+                "mail_confirm": data[10]
             }
         }
         return output

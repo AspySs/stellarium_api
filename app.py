@@ -14,6 +14,7 @@ from realizations.affirmations import affirmations_realization
 from realizations.registration import register_realization
 from realizations.moon_cal import moon_calendar_realization
 from parse.horoscope_add_to_bd import update_horoscope_table
+from realizations.confirm import code_confirm
 #realizations
 
 bdCreator.tables_check()
@@ -27,6 +28,10 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Hello World!'
+
+@app.route('/confirm/', methods=['GET'])
+def conf():
+    return (code_confirm())
 
 @app.route('/register/', methods=['GET'])
 def registr():
