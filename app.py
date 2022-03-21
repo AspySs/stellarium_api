@@ -23,7 +23,7 @@ from realizations.comp_horo import horo_comp_realization
 bdCreator.tables_check()
 
 app = Flask(__name__)
-password = "awd123dSR#4rsdf3afds4"
+password = "awd123dSR4rsdf3afds4"
 
 @app.route('/')
 def hello_world():

@@ -40,6 +40,10 @@ def get_content(html, dat):
 
 def parse_moon_to_bd():
     year = datetime.datetime.now().year
+    conn = sqlite3.connect("stell.db")
+    c = conn.cursor()
+    c.execute("DELETE FROM moon_calendar")
+    conn.commit()
     # январь
     for i in range(1, 32):
 

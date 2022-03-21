@@ -10,7 +10,7 @@ def horoscope_realization():
     c = conn.cursor()
     print(Fore.BLUE + "Успешно!")
     # подключили
-    name = ["null", "capricorn", "taurus", "virgo", "aquarius", "gemini", "libra", "pisces", "cancer", "scorpio", "aries", "leo", "sagittarius"]
+    name = ["NULL", "aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"]
     type = ["love", "common", "health", "business"]
     today = []
     for i in type:
