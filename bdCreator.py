@@ -74,4 +74,19 @@ def tables_check():
     c.execute("CREATE TABLE IF NOT EXISTS moon_calendar (date TEXT PRIMARY KEY NOT NULL, phase TEXT NOT NULL, characteristics TEXT NOT NULL, health TEXT NOT NULL, relations TEXT NOT NULL, business TEXT NOT NULL)")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
+
+    print(Fore.BLUE + "Создание таблицы с нумерологией" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS numerologic (id INTEGER PRIMARY KEY AUTOINCREMENT, number TEXT, general TEXT, dignities TEXT, disadvantages TEXT, fate TEXT )")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+
+    print(Fore.BLUE + "Создание таблицы совместимостей имен" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS comp_names (id INTEGER PRIMARY KEY AUTOINCREMENT, love_text TEXT, friend_text TEXT, job_text TEXT, love_val INTEGER NOT NULL, friend_val INTEGER NOT NULL, job_val INTEGER NOT NULL)")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
+
+    print(Fore.BLUE + "Создание таблицы совместимостей знаков" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS comp_horo (id INTEGER PRIMARY KEY AUTOINCREMENT, first_sign_id INTEGER NOT NULL, sec_sign_id INTEGER NOT NULL, love_text TEXT, sex_text TEXT, marriage_text TEXT, friend_text TEXT, love_val INTEGER NOT NULL, sex_val INTEGER NOT NULL, marriage_val INTEGER NOT NULL, friend_val INTEGER NOT NULL)")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
     #создали
