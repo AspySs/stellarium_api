@@ -1,5 +1,4 @@
 import sqlite3
-from colorama import Fore
 from flask import request
 
 
@@ -9,10 +8,8 @@ def horo_comp_realization():
     first_id = int(request.args.get('first'))
     second_id = int(request.args.get('second'))
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     columns = ['love_text', 'sex_text', 'marriage_text', 'friend_text', 'love_val', 'sex_val', 'marriage_val', 'friend_val']
     data = []

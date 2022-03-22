@@ -1,5 +1,4 @@
 import sqlite3
-from colorama import Fore
 from flask import request
 
 
@@ -17,10 +16,8 @@ def pifagor_realization():
     for i in range(0,len(result)):
         result[i] = resultStr.count(str(i))
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     text = []
     sql = "SELECT text FROM pifagor_square WHERE num = ? AND num_count = ?"

@@ -25,11 +25,11 @@ def send_mail(addr_to, code):
     try:
         server.login(addr_from, password)
     except SMTPNotSupportedError:
-        print("1")
+        print("SMTPNotSupportedError")
     except SMTPAuthenticationError:
-        print("2")
+        print("SMTPAuthenticationError")
     except SMTPHeloError:
-        print("3")
+        print("SMTPHeloError")
     #server.sendmail(msg)
     server.send_message(msg)                            # Отправляем сообщение
     server.quit()

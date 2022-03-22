@@ -2,24 +2,35 @@ import sqlite3
 from colorama import Fore
 from parse.horoscope_pars import parse
 import os
+import shutil
 
 
 
 def update_horoscope_table():
-    #включать когда нужно подтянуть новые гороскопы
-    #parse()
+
     cur_path = os.path.dirname(__file__)
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     path = ["horo_txts/classic/", "horo_txts/char/"]
+
     files = ["main.txt", "business.txt", "health.txt", "love.txt"]
     char_files = ["description.txt", "charact.txt", "love.txt", "career.txt"]
-    signs = ["capricorn/", "taurus/", "virgo/", "aquarius/", "gemini/", "libra/", "pisces/", "cancer/", "scorpio/", "aries/", "leo/", "sagittarius/"]
+    signs = ["aries/", "taurus/", "gemini/", "cancer/", "leo/", "virgo/", "libra/", "scorpio/", "sagittarius/", "capricorn/", "aquarius/", "pisces/"]
     tables = ["today_horoscopes", "next_day_horoscopes", "week_horoscopes", "month_horoscopes", "year_horoscopes", "character_horoscopes"]
+    if(os.path.isfile(cur_path + "/" + path[0] + signs[0] + files[0])):
+        for i in signs:
+            shutil.rmtree(cur_path + "/" + path[0] + i)
+            os.mkdir(cur_path + "/" + path[0] + i)
+            shutil.rmtree(cur_path + "/" + path[1] + i)
+            os.mkdir(cur_path + "/" + path[1] + i)
+
+
+    #включать когда нужно подтянуть новые гороскопы
+    parse()
+
+
     # 1 - capricorn
     # 2 - taurus
     # 3 - virgo

@@ -1,5 +1,4 @@
 import sqlite3
-from colorama import Fore
 from flask import request
 
 
@@ -9,10 +8,8 @@ def name_comp_realization():
     first_name = str(request.args.get('first'))
     second_name = str(request.args.get('second'))
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     c.execute(f"SELECT MAX(id) FROM comp_names")
     max_index = c.fetchone()
