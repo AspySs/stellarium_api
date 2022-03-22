@@ -1,17 +1,13 @@
 import random
 import sqlite3
-
-from colorama import Fore
 from flask import request
 from random import randint
 
 def affirmations_realization():
     user_id = request.args.get('id')
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     c.execute(f"SELECT MAX(id) FROM Affirmations")
     max = c.fetchone()

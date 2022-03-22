@@ -1,14 +1,10 @@
 import sqlite3
 
-from colorama import Fore
-
 
 def gener_pifag():
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     sql = "INSERT INTO pifagor_square (num, num_count, text) VALUES( ?, ?, ?)"
     for i in range(1, 10):
@@ -18,10 +14,8 @@ def gener_pifag():
 
 def gener_taro_cards():
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     sql = "INSERT INTO taro_cards (name, pic_name, desc_one_card, desc_day_card, desc_first_of_three_cards, desc_second_of_three_cards, desc_third_of_three_cards, desc_first_of_four_cards, desc_second_of_four_cards, desc_third_of_four_cards, desc_fourth_of_four_cards, desc_first_of_seven_cards, desc_second_of_seven_cards, desc_third_of_seven_cards, desc_fourth_of_seven_cards, desc_fifth_of_seven_cards, desc_sixth_of_seven_cards, desc_seventh_of_seven_cards) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
     for i in range(0, 40):
@@ -80,10 +74,8 @@ def character_horoscopes(conn):
 
 def moon_gener():
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     sql = "INSERT INTO moon_calendar (date, phase, characteristics, health, relations, business) VALUES(?, ?, ?, ?, ?, ?)"
     for i in range(1, 13):

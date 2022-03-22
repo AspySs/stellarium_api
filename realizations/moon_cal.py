@@ -1,15 +1,11 @@
 import sqlite3
-
-from colorama import Fore
 from flask import request
 
 def moon_calendar_realization():
     date = request.args.get('date')
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     data = []
     types = ["phase", "characteristics", "health", "relations", "business"]

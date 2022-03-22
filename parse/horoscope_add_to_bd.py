@@ -10,10 +10,8 @@ def update_horoscope_table():
 
     cur_path = os.path.dirname(__file__)
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     path = ["horo_txts/classic/", "horo_txts/char/"]
 

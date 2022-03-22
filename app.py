@@ -18,6 +18,7 @@ from realizations.confirm import code_confirm
 from parse.moon_parser import parse_moon_to_bd
 from realizations.comp_name import name_comp_realization
 from realizations.comp_horo import horo_comp_realization
+from realizations.numerology import numerology_realization
 #realizations
 
 bdCreator.tables_check()
@@ -31,19 +32,27 @@ def hello_world():
 
 @app.route('/updatemoon/', methods=['GET'])
 def upd_moon():
+    print(Fore.RED + "ОТПРАВЛЕН ЗАПРОС НА ОБНОВЛЕНИЕ ТАБЛИЦЫ С ЛУННЫМ КАЛЕНДАРЕМ!!!")
     if(password == str(request.args.get('pass'))):
+        print(Fore.YELLOW + "пароль подтвержден начинаю обновление!")
         parse_moon_to_bd()  # запускать раз в год 30-31дек
+        print(Fore.GREEN + "закончил обновление!")
         return 'Success'
     else:
+        print(Fore.RED + "пароль не верный!")
         return ':('
 
 
 @app.route('/updatehoro/', methods=['GET'])
 def upd_horo():
+    print(Fore.RED + "ОТПРАВЛЕН ЗАПРОС НА ОБНОВЛЕНИЕ ТАБЛИЦЫ С ГОРОСКОПАМИ!!!")
     if(password == str(request.args.get('pass'))):
+        print(Fore.YELLOW + "пароль подтвержден начинаю обновление!")
         update_horoscope_table() # поставить задачу на ежедневный парс гороскопов заранее
+        print(Fore.GREEN + "закончил обновление!")
         return 'Success'
     else:
+        print(Fore.RED + "пароль не верный!")
         return ':('
 
 @app.route('/confirm/', methods=['GET'])
@@ -114,6 +123,10 @@ def comp_name():
 @app.route('/compHoro/', methods=['GET'])
 def comp_horo():
     return (horo_comp_realization())
+
+@app.route('/numerology/', methods=['GET'])
+def numerology():
+    return (numerology_realization())
 
 if __name__ == '__main__':
     app.run()

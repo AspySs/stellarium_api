@@ -4,7 +4,6 @@ import sqlite3
 import requests
 import datetime
 from bs4 import BeautifulSoup
-from colorama import Fore
 from selenium import webdriver
 
 MAIN_URL = "https://womoon.ru/m/"

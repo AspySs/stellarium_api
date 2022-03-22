@@ -1,6 +1,5 @@
 from flask import request
 import sqlite3
-from colorama import Fore
 
 def auth_realization():
     google = request.args.get('google', default = None)
@@ -8,10 +7,8 @@ def auth_realization():
     mail = request.args.get('mail', default = None)
     password = request.args.get('password', default = None)
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
     try:
         if(google != None):

@@ -17,10 +17,8 @@ def register_realization():
     proof = 1
     code = "confirmed by fb or google"
     # подключаемся к БД
-    print(Fore.BLUE + "Подключение к БД....")
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
-    print(Fore.BLUE + "Успешно!")
     # подключили
 
     if(mail!=None and password!=None):
@@ -38,11 +36,12 @@ def register_realization():
         print(Fore.GREEN + "Добавление записи в бд...")
         add = c.execute(f"INSERT INTO Users (mail, user_name, date_of_birth, sex, horoscope_sign, google_id, facebook_id, password, code, proof) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (mail, username, date, sex, horoscope_id, google, facebook, password, code, proof))
         conn.commit()
+        print(Fore.GREEN + "Новый пользователь добавлен!")
         if(proof == 0):
             send_mail(mail, code)
         return str(c.lastrowid)
 
     except sqlite3.IntegrityError:
-        print(Fore.GREEN + "Добавление записи в бд закончено с ошибкой")
+        print(Fore.RED + "Добавление записи в бд закончено с ошибкой")
         print(Fore.YELLOW + "End Registration!")
         return "False"
