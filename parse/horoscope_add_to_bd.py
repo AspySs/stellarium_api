@@ -6,6 +6,7 @@ import os
 
 
 def update_horoscope_table():
+    #включать когда нужно подтянуть новые гороскопы
     #parse()
     cur_path = os.path.dirname(__file__)
     # подключаемся к БД

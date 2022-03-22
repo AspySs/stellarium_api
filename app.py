@@ -15,19 +15,36 @@ from realizations.registration import register_realization
 from realizations.moon_cal import moon_calendar_realization
 from parse.horoscope_add_to_bd import update_horoscope_table
 from realizations.confirm import code_confirm
+from parse.moon_parser import parse_moon_to_bd
+from realizations.comp_name import name_comp_realization
+from realizations.comp_horo import horo_comp_realization
 #realizations
 
 bdCreator.tables_check()
-#table_gener.gener_pifag()
-#table_gener.gener_horoscopes()
-#table_gener.gener_taro_cards()
-#table_gener.moon_gener()
-update_horoscope_table()
+
 app = Flask(__name__)
+password = "awd123dSR#4rsdf3afds4"
 
 @app.route('/')
 def hello_world():
     return 'Hello World!'
+
+@app.route('/updatemoon/', methods=['GET'])
+def upd_moon():
+    if(password == str(request.args.get('pass'))):
+        parse_moon_to_bd()  # запускать раз в год 30-31дек
+        return 'Success'
+    else:
+        return ':('
+
+
+@app.route('/updatehoro/', methods=['GET'])
+def upd_horo():
+    if(password == str(request.args.get('pass'))):
+        update_horoscope_table() # поставить задачу на ежедневный парс гороскопов заранее
+        return 'Success'
+    else:
+        return ':('
 
 @app.route('/confirm/', methods=['GET'])
 def conf():
@@ -90,6 +107,13 @@ def taro():
 def moon():
     return (moon_calendar_realization())
 
+@app.route('/compName/', methods=['GET'])
+def comp_name():
+    return (name_comp_realization())
+
+@app.route('/compHoro/', methods=['GET'])
+def comp_horo():
+    return (horo_comp_realization())
 
 if __name__ == '__main__':
     app.run()
