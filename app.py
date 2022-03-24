@@ -19,6 +19,7 @@ from parse.moon_parser import parse_moon_to_bd
 from realizations.comp_name import name_comp_realization
 from realizations.comp_horo import horo_comp_realization
 from realizations.numerology import numerology_realization
+from realizations.affirmations import affirmations_not_reg_realization
 #realizations
 
 bdCreator.tables_check()
@@ -99,6 +100,10 @@ def test():
 def affirm():
     return (affirmations_realization())
 
+@app.route('/affirmationNotReg/')
+def affirm_not_reg():
+    return (affirmations_not_reg_realization())
+
 @app.route('/pifagorSquare/', methods=['GET'])
 def pifagor():
     return (pifagor_realization())
@@ -129,4 +134,4 @@ def numerology():
     return (numerology_realization())
 
 if __name__ == '__main__':
-    app.run(host="192.168.1.105", port=5000)
+    app.run()
