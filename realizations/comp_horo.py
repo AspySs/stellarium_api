@@ -19,7 +19,6 @@ def horo_comp_realization():
         temp = c.fetchone()
         data.append(temp[0])
     output = {
-        "compatibilityHoros": {
             "love_text": data[0],
             "sex_text": data[1],
             "marriage_text": data[2],
@@ -28,7 +27,6 @@ def horo_comp_realization():
             "sex_val": data[5],
             "marriage_val": data[6],
             "friend_val": data[7]
-        }
     }
     return output
 
