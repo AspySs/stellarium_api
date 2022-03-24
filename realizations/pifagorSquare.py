@@ -26,39 +26,39 @@ def pifagor_realization():
         text0 = c.fetchone()
         text.append(text0[0])
     output = {
-        "1": {
+        "one": {
             "count": result[1],
             "text": text[0]
         },
-        "2": {
+        "two": {
             "count": result[2],
             "text": text[1]
         },
-        "3": {
+        "three": {
             "count": result[3],
             "text": text[2]
         },
-        "4": {
+        "four": {
             "count": result[4],
             "text": text[3]
         },
-        "5": {
+        "five": {
             "count": result[5],
             "text": text[4]
         },
-        "6": {
+        "six": {
             "count": result[6],
             "text": text[5]
         },
-        "7": {
+        "seven": {
             "count": result[7],
             "text": text[6]
         },
-        "8": {
+        "eight": {
             "count": result[8],
             "text": text[7]
         },
-        "9": {
+        "nine": {
             "count": result[9],
             "text": text[8]
         }

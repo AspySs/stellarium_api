@@ -29,14 +29,12 @@ def name_comp_realization():
         temp = c.fetchone()
         data.append(temp[0])
     output = {
-        "compatibilityNames": {
             "love_text": data[0],
             "friend_text": data[1],
             "job_text": data[2],
             "love_val": data[3],
             "friend_val": data[4],
             "job_val": data[5]
-        }
     }
     return output
 

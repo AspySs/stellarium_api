@@ -15,12 +15,10 @@ def numerology_realization():
         temp = c.fetchone()
         data.append(temp[0])
     output = {
-        "numerologic": {
             "number": number,
             "general": data[0],
             "dignities": data[1],
             "disadvantages": data[2],
             "fate": data[3]
-        }
     }
     return output
