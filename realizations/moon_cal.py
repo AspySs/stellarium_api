@@ -1,6 +1,7 @@
 import sqlite3
 from flask import request
 
+
 def moon_calendar_realization():
     date = request.args.get('date')
     # подключаемся к БД
@@ -14,14 +15,11 @@ def moon_calendar_realization():
         c.execute(sql, (date,))
         data.append(c.fetchone()[0])
     answer = {
-            "calendar": {
-                "date": date,
-                "phase": data[0],
-                "characteristics":data[1],
-                "health":data[2],
-                "relations":data[3],
-                "business":data[4]
-
-        }
+        "date": date,
+        "phase": data[0],
+        "characteristics": data[1],
+        "health": data[2],
+        "relations": data[3],
+        "business": data[4]
     }
     return answer
