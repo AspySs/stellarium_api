@@ -100,38 +100,43 @@ def taro_realization():
         columns_four = ("desc_first_of_four_cards", "desc_second_of_four_cards", "desc_third_of_four_cards",
                         "desc_fourth_of_four_cards")
         j = 0
+        id_four = ['3', '4', '5', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '30', '31', '32', '33', '34', '35', '36']
+        fo_cards_ids = []
+        for i in range(0, 4):
+            fo_cards_ids.append(random.choice(id_four))
+            id_four.remove(fo_cards_ids[i])
         for i in columns_four:
             sql = "SELECT " + i + " FROM taro_cards WHERE id = ?"
-            c.execute(sql, (cards_id[j],))
+            c.execute(sql, (fo_cards_ids[j],))
             descriptions.append(c.fetchone()[0])
-            c.execute(f"SELECT name FROM taro_cards WHERE id=" + str(cards_id[j]))
+            c.execute(f"SELECT name FROM taro_cards WHERE id=" + str(fo_cards_ids[j]))
             names.append(c.fetchone()[0])
-            c.execute(f"SELECT pic_name FROM taro_cards WHERE id=" + str(cards_id[j]))
+            c.execute(f"SELECT pic_name FROM taro_cards WHERE id=" + str(fo_cards_ids[j]))
             pic_names.append(c.fetchone()[0])
             j = j + 1
 
         output = {
             "four": {
                 "first": {
-                    "id": cards_id[0],
+                    "id": fo_cards_ids[0],
                     "name": names[0],
                     "pic_name": pic_names[0],
                     "description": descriptions[0]
                 },
                 "second": {
-                    "id": cards_id[1],
+                    "id": fo_cards_ids[1],
                     "name": names[1],
                     "pic_name": pic_names[1],
                     "description": descriptions[1]
                 },
                 "third": {
-                    "id": cards_id[2],
+                    "id": fo_cards_ids[2],
                     "name": names[2],
                     "pic_name": pic_names[2],
                     "description": descriptions[2]
                 },
                 "fourth": {
-                    "id": cards_id[3],
+                    "id": fo_cards_ids[3],
                     "name": names[3],
                     "pic_name": pic_names[3],
                     "description": descriptions[3]
