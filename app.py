@@ -6,6 +6,7 @@ from colorama import Fore
 import utility.table_gener
 import bdCreator
 #realizations
+from realizations.affirm_like import add_affirm_to_liked, delete_affirm_from_liked
 from realizations.authorization import auth_realization
 from realizations.taro import taro_realization
 from realizations.horoscopes import horoscope_realization
@@ -116,6 +117,14 @@ def horoscope():
 @app.route('/taro/', methods=['GET'])
 def taro():
     return (taro_realization())
+
+@app.route('/like_affirm/', methods=['GET'])
+def like_affirm():
+    return (add_affirm_to_liked())
+
+@app.route('/unlike_affirm/', methods=['GET'])
+def unlike_affirm():
+    return (delete_affirm_from_liked())
 
 @app.route('/moonCalendar/', methods=['GET'])
 def moon():
