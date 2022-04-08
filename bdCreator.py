@@ -89,4 +89,9 @@ def tables_check():
     c.execute("CREATE TABLE IF NOT EXISTS comp_horo (id INTEGER PRIMARY KEY AUTOINCREMENT, first_sign_id INTEGER NOT NULL, sec_sign_id INTEGER NOT NULL, love_text TEXT, sex_text TEXT, marriage_text TEXT, friend_text TEXT, love_val INTEGER NOT NULL, sex_val INTEGER NOT NULL, marriage_val INTEGER NOT NULL, friend_val INTEGER NOT NULL)")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
+
+    print(Fore.BLUE + "Создание таблицы понравившихся аффирмаций" + " \n")
+    c.execute("CREATE TABLE IF NOT EXISTS liked_affirm (affirm_id INTEGER NOT NULL, user_id INTEGER NOT NULL)")
+    conn.commit()
+    print(Fore.BLUE + "Успешно!" + " \n")
     #создали

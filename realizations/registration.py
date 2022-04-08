@@ -41,7 +41,7 @@ def register_realization():
             send_mail(mail, code)
         return str(c.lastrowid)
 
-    except sqlite3.IntegrityError:
+    except sqlite3.IntegrityError as e:
         print(Fore.RED + "Добавление записи в бд закончено с ошибкой")
         print(Fore.YELLOW + "End Registration!")
-        return "False"
+        return str(e)
