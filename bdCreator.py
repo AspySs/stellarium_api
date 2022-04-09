@@ -14,7 +14,7 @@ def tables_check():
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
     print(Fore.BLUE + "Создание таблицы с аффирмациями" + " \n")
-    c.execute("CREATE TABLE IF NOT EXISTS Affirmations (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, text TEXT, picture BLOB)")
+    c.execute("CREATE TABLE IF NOT EXISTS Affirmations (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, text TEXT, picture TEXT)")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
     print(Fore.BLUE + "Создание таблицы с показанными аффирмациями" + " \n")
