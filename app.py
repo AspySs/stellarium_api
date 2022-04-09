@@ -6,6 +6,7 @@ from colorama import Fore
 import utility.table_gener
 import bdCreator
 #realizations
+from realizations.user_exist import user_is_exist
 from realizations.affirm_like import add_affirm_to_liked, delete_affirm_from_liked, get_affirm_from_liked
 from realizations.authorization import auth_realization
 from realizations.taro import taro_realization
@@ -69,6 +70,9 @@ def registr():
 def auth():
     return (auth_realization())
 
+@app.route('/user_exist/', methods=['GET'])
+def user_exist():
+    return (user_is_exist())
 
 @app.route('/test/', methods=['GET'])
 def test():
