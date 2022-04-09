@@ -22,6 +22,7 @@ from realizations.comp_name import name_comp_realization
 from realizations.comp_horo import horo_comp_realization
 from realizations.numerology import numerology_realization
 from realizations.affirmations import affirmations_not_reg_realization
+from realizations.check_confirm import check_confirm
 #realizations
 
 bdCreator.tables_check()
@@ -73,6 +74,10 @@ def auth():
 @app.route('/user_exist/', methods=['GET'])
 def user_exist():
     return (user_is_exist())
+
+@app.route('/check_confirm/', methods=['GET'])
+def check_confirmation():
+    return check_confirm()
 
 @app.route('/test/', methods=['GET'])
 def test():
@@ -151,4 +156,4 @@ def numerology():
     return (numerology_realization())
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="192.168.1.105", port=5000)
