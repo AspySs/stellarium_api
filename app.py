@@ -79,6 +79,10 @@ def user_exist():
 def check_confirmation():
     return check_confirm()
 
+@app.route('/check_uid/', methods=['GET'])
+def check_uniqueID():
+    return check_uid()
+
 @app.route('/test/', methods=['GET'])
 def test():
     id = request.args.get('id')
