@@ -48,14 +48,14 @@ def get_affirm_from_liked():
     # подключили
     c.execute("SELECT affirm_id FROM liked_affirm WHERE user_id=?", (user_id,))
     ids = c.fetchall()
-    data = {}
+    data = []
     for i in ids:
         c.execute("SELECT text FROM Affirmations WHERE id=?", (i[0],))
         text = c.fetchone()
         c.execute("SELECT picture FROM Affirmations WHERE id=?", (i[0],))
         picture = c.fetchone()
         temp = {"id": str(i[0]), "text": str(text[0]), "picture": str(picture[0])}
-        data["affirmation_"+str(i[0])] = temp
+        data.append(temp)
     js = json.dumps(data)
     return js
 
