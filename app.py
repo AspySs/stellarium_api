@@ -23,6 +23,8 @@ from realizations.comp_horo import horo_comp_realization
 from realizations.numerology import numerology_realization
 from realizations.affirmations import affirmations_not_reg_realization
 from realizations.check_confirm import check_confirm
+from realizations.check_uid import check_uid
+from realizations.update_user import update_user_by_id
 #realizations
 
 bdCreator.tables_check()
@@ -66,6 +68,10 @@ def conf():
 @app.route('/register/', methods=['GET'])
 def registr():
     return (register_realization())
+
+@app.route('/update_user/', methods=['GET'])
+def update_user():
+    return update_user_by_id()
 
 @app.route('/auth/', methods=['GET'])
 def auth():

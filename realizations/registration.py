@@ -6,10 +6,10 @@ import secrets
 from utility.mail import send_mail
 
 def register_realization():
-    username = request.args.get('name')
-    date = request.args.get('birth')
-    sex = request.args.get('sex')
-    horoscope_id = request.args.get('sign')
+    username = request.args.get('name', default = None)
+    date = request.args.get('birth', default = None)
+    sex = request.args.get('sex', default = None)
+    horoscope_id = request.args.get('sign', default = None)
     google = request.args.get('google', default = None)
     facebook = request.args.get('facebook', default = None)
     mail = request.args.get('mail', default = None)
