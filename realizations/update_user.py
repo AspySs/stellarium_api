@@ -22,12 +22,22 @@ def update_user_by_id():
     # подключили
     try:
         print(Fore.GREEN + "Обновление записи в бд...")
-        # add = c.execute(
-        #     f"UPDATE Users SET (mail, user_name, date_of_birth, sex, horoscope_sign, google_id, facebook_id, password, code, proof) = ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id = ?",
-        #     (mail, username, date, sex, horoscope_id, google, facebook, password, code, proof, user_id))
-        c.execute(
-            f"UPDATE Users SET mail = ?, user_name=?, date_of_birth=?, sex=?, horoscope_sign=?, google_id=?, facebook_id=?, password=?, proof=? WHERE id=?",
-            (mail, username, date, sex, horoscope_id, google, facebook, password, proof, user_id))
+        if username is not None:
+            c.execute(f"UPDATE Users SET user_name=? WHERE id=?", (username, user_id))
+        if date is not None:
+            c.execute(f"UPDATE Users SET date_of_birth=? WHERE id=?", (date, user_id))
+        if sex is not None:
+            c.execute(f"UPDATE Users SET sex=? WHERE id=?", (sex, user_id))
+        if horoscope_id is not None:
+            c.execute(f"UPDATE Users SET horoscope_sign=? WHERE id=?", (horoscope_id, user_id))
+        if google is not None:
+            c.execute(f"UPDATE Users SET google_id=? WHERE id=?", (google, user_id))
+        if facebook is not None:
+            c.execute(f"UPDATE Users SET facebook_id=? WHERE id=?", (facebook, user_id))
+        if mail is not None:
+            c.execute(f"UPDATE Users SET mail=? WHERE id=?", (mail, user_id))
+        if password is not None:
+            c.execute(f"UPDATE Users SET password=? WHERE id=?", (password, user_id))
         conn.commit()
         print(Fore.GREEN + "Пользователь обновлен!")
         return str(c.lastrowid)
