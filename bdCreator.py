@@ -10,7 +10,7 @@ def tables_check():
     print(Fore.BLUE + "Успешно!")
     # подключили
     print(Fore.BLUE + "Создание таблицы с юзерами" + " \n")
-    c.execute("CREATE TABLE IF NOT EXISTS Users (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, mail TEXT UNIQUE, user_name TEXT, date_of_birth DATE, sex BOOLEAN, horoscope_sign INTEGER, google_id TEXT UNIQUE, facebook_id TEXT UNIQUE, password TEXT, code TEXT UNIQUE, proof INTEGER)")
+    c.execute("CREATE TABLE IF NOT EXISTS Users (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, mail TEXT UNIQUE, user_name TEXT, date_of_birth DATE, sex BOOLEAN, horoscope_sign INTEGER, google_id TEXT UNIQUE, facebook_id TEXT UNIQUE, password TEXT, code TEXT UNIQUE, proof INTEGER, pass_recovery_code TEXT, temp_pass TEXT)")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
     print(Fore.BLUE + "Создание таблицы с аффирмациями" + " \n")

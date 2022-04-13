@@ -8,6 +8,7 @@ def send_mail(addr_to, code):
     addr_from = "stellarium.bot@gmail.com"                # Адресат
    # addr_to   = "to_address@gmail.com"                  # Получатель
     password  = "02tidivu"                                  # Пароль
+    addr = "http://127.0.0.1:5000/confirm?code="
 
     msg = MIMEMultipart()                               # Создаем сообщение
     msg['From']    = addr_from                          # Адресат
@@ -15,7 +16,39 @@ def send_mail(addr_to, code):
     msg['Subject'] = 'Подтверждение почты!'                   # Тема сообщения
 
     main = "Пожалуйста, не отвечайте на данное сообщение, оно отправлено автоматизированной системой, ответа не последует \r "
-    link = "\nссылка для подтверждения регистрации: http://127.0.0.1:5000/confirm?code="+code
+    link = "\nссылка для подтверждения регистрации: " + addr + code
+    body = main+link
+    msg.attach(MIMEText(body, 'plain'))                 # Добавляем в сообщение текст
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)  # Создаем объект SMTP
+    server.starttls()
+    server.set_debuglevel(False)
+    try:
+        server.login(addr_from, password)
+    except SMTPNotSupportedError:
+        print("SMTPNotSupportedError")
+    except SMTPAuthenticationError:
+        print("SMTPAuthenticationError")
+    except SMTPHeloError:
+        print("SMTPHeloError")
+    #server.sendmail(msg)
+    server.send_message(msg)                            # Отправляем сообщение
+    server.quit()
+
+def send_mail_pas_rec(addr_to, code, id, passw):
+    addr_from = "stellarium.bot@gmail.com"                # Адресат
+   # addr_to   = "to_address@gmail.com"                  # Получатель
+    password  = "02tidivu"                                  # Пароль
+    addr = "http://127.0.0.1:5000/passActivate/"
+    req = "?id="+id+"&code="+code
+
+    msg = MIMEMultipart()                               # Создаем сообщение
+    msg['From']    = addr_from                          # Адресат
+    msg['To']      = addr_to                            # Получатель
+    msg['Subject'] = 'Подтверждение почты!'                   # Тема сообщения
+
+    main = "Пожалуйста, не отвечайте на данное сообщение, оно отправлено автоматизированной системой, ответа не последует \r "
+    link = "\nссылка для активации временного пароля: "+passw+"\n перейдите для активации: " + addr + req
     body = main+link
     msg.attach(MIMEText(body, 'plain'))                 # Добавляем в сообщение текст
 
