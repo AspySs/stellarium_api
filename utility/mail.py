@@ -8,7 +8,7 @@ def send_mail(addr_to, code):
     addr_from = "stellarium.bot@gmail.com"                # Адресат
    # addr_to   = "to_address@gmail.com"                  # Получатель
     password  = "02tidivu"                                  # Пароль
-    addr = "http://127.0.0.1:5000/confirm?code="
+    addr = "http://192.168.1.105:5000/confirm?code="
 
     msg = MIMEMultipart()                               # Создаем сообщение
     msg['From']    = addr_from                          # Адресат
@@ -35,12 +35,12 @@ def send_mail(addr_to, code):
     server.send_message(msg)                            # Отправляем сообщение
     server.quit()
 
-def send_mail_pas_rec(addr_to, code, id, passw):
+def send_mail_pas_rec(addr_to, code, mail, passw):
     addr_from = "stellarium.bot@gmail.com"                # Адресат
    # addr_to   = "to_address@gmail.com"                  # Получатель
     password  = "02tidivu"                                  # Пароль
     addr = "http://127.0.0.1:5000/passActivate/"
-    req = "?id="+id+"&code="+code
+    req = "?mail=" + mail + "&code=" + code
 
     msg = MIMEMultipart()                               # Создаем сообщение
     msg['From']    = addr_from                          # Адресат
