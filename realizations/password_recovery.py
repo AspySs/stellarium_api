@@ -6,7 +6,7 @@ import secrets
 from utility.mail import send_mail_pas_rec
 
 def pass_rec():
-    id = request.args.get('id')
+    mail = request.args.get('mail')
     # подключаемся к БД
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
@@ -15,41 +15,40 @@ def pass_rec():
     code = ''.join(secrets.choice(letters_and_digits) for i in range(30))
     passw = ''.join(secrets.choice(letters_and_digits) for i in range(15))
 
-    c.execute(f"SELECT * FROM Users WHERE id=?", (id,))
+    c.execute(f"SELECT * FROM Users WHERE mail=?", (mail,))
     data = c.fetchone()
     if (data == None):
         return "User not found!"
-    else:
-        c.execute(f"SELECT mail FROM Users WHERE id=?", (id,))
-        mail = c.fetchone()
     try:
-        c.execute("UPDATE Users SET pass_recovery_code=? WHERE id=?", (code, id))
+        c.execute("UPDATE Users SET pass_recovery_code=? WHERE mail=?", (code, mail))
         conn.commit()
-        c.execute("UPDATE Users SET temp_pass=? WHERE id=?", (passw, id))
+        c.execute("UPDATE Users SET temp_pass=? WHERE mail=?", (passw, mail))
         conn.commit()
-        send_mail_pas_rec(mail[0], code, id, passw)
+        send_mail_pas_rec(mail, code, mail, passw)
     except Exception as e:
+        return ("exception")
         return str(e)
 
     return "True"
 
+
 def activate_pass_rec():
-    id = request.args.get('id')
+    mail = request.args.get('mail')
     code = request.args.get('code')
     # подключаемся к БД
     conn = sqlite3.connect("stell.db")
     c = conn.cursor()
     # подключили
 
-    c.execute(f"SELECT * FROM Users WHERE id=? AND pass_recovery_code=?", (id,code))
+    c.execute(f"SELECT * FROM Users WHERE mail=? AND pass_recovery_code=?", (mail, code))
     data = c.fetchone()
     if (data == None):
         return "User not found!"
 
     try:
-        c.execute("SELECT temp_pass FROM Users WHERE id=?", (id,))
+        c.execute("SELECT temp_pass FROM Users WHERE mail=?", (mail,))
         passw = c.fetchone()
-        c.execute("UPDATE Users SET password=? WHERE id=? AND pass_recovery_code=?", (passw[0], id, code))
+        c.execute("UPDATE Users SET password=? WHERE mail=? AND pass_recovery_code=?", (passw[0], mail, code))
         conn.commit()
     except Exception as e:
         return str(e)
