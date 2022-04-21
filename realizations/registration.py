@@ -4,6 +4,7 @@ from colorama import Fore
 import string
 import secrets
 from utility.mail import send_mail
+from utility.hash_pass import hash_pwd
 
 def register_realization():
     username = request.args.get('name', default = None)
@@ -34,6 +35,8 @@ def register_realization():
 
     try:
         print(Fore.GREEN + "Добавление записи в бд...")
+        if(password != None):
+            password = hash_pwd(password)
         add = c.execute(f"INSERT INTO Users (mail, user_name, date_of_birth, sex, horoscope_sign, google_id, facebook_id, password, code, proof) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (mail, username, date, sex, horoscope_id, google, facebook, password, code, proof))
         conn.commit()
         print(Fore.GREEN + "Новый пользователь добавлен!")

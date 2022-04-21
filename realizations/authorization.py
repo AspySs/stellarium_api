@@ -1,4 +1,5 @@
 from flask import request
+from utility.hash_pass import hash_pwd
 import sqlite3
 
 
@@ -23,6 +24,8 @@ def auth_realization():
             if (data == None):
                 return "False"
         elif ((mail != None) and (password != None)):
+            # hash
+            password = hash_pwd(password)
             c.execute(f"SELECT * FROM Users WHERE mail = ? AND password=?", (mail, password))
             data = c.fetchone()
             if (data == None):

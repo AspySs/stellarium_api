@@ -25,7 +25,7 @@ from realizations.affirmations import affirmations_not_reg_realization
 from realizations.check_confirm import check_confirm
 from realizations.check_uid import check_uid
 from realizations.update_user import update_user_by_id
-from realizations.password_recovery import pass_rec, activate_pass_rec
+from realizations.password_recovery import pass_rec, activate_pass_rec, update_password
 #realizations
 
 bdCreator.tables_check()
@@ -173,6 +173,10 @@ def recovery():
 @app.route('/passActivate/', methods=['GET'])
 def act_recovery():
     return (activate_pass_rec())
+
+@app.route('/passUpdate/', methods=['GET'])
+def pass_update():
+    return (update_password())
 
 if __name__ == '__main__':
     app.run(host="192.168.1.105", port=5000)
