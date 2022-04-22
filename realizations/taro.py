@@ -1,11 +1,12 @@
 import random
 import sqlite3
 from flask import request
-
+from log.logger import log_error
 
 def taro_realization():
     count = int(request.args.get('count'))
     if ((count != 0) and (count != 1) and (count != 3) and (count != 4) and (count != 7)):
+        log_error("Invalid count of cards error....", "taro_realization")
         return "Invalid count of cards error...."
     # подключаемся к БД
     conn = sqlite3.connect("stell.db")

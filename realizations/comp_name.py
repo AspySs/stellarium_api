@@ -2,8 +2,6 @@ import sqlite3
 from flask import request
 
 
-
-
 def name_comp_realization():
     first_name = str(request.args.get('first'))
     second_name = str(request.args.get('second'))

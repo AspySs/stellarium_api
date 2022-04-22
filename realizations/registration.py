@@ -1,10 +1,10 @@
 from flask import request
 import sqlite3
-from colorama import Fore
 import string
 import secrets
 from utility.mail import send_mail
 from utility.hash_pass import hash_pwd
+from log.logger import log_error
 
 def register_realization():
     username = request.args.get('name', default = None)
@@ -34,17 +34,14 @@ def register_realization():
                 flag = False
 
     try:
-        print(Fore.GREEN + "Добавление записи в бд...")
         if(password != None):
             password = hash_pwd(password)
         add = c.execute(f"INSERT INTO Users (mail, user_name, date_of_birth, sex, horoscope_sign, google_id, facebook_id, password, code, proof) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (mail, username, date, sex, horoscope_id, google, facebook, password, code, proof))
         conn.commit()
-        print(Fore.GREEN + "Новый пользователь добавлен!")
         if(proof == 0):
             send_mail(mail, code)
         return str(c.lastrowid)
 
-    except sqlite3.IntegrityError as e:
-        print(Fore.RED + "Добавление записи в бд закончено с ошибкой")
-        print(Fore.YELLOW + "End Registration!")
-        return str(e)
+    except Exception as e:
+        log_error(str(e), "register_realization")
+        return ("exception")

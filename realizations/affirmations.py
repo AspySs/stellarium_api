@@ -2,6 +2,7 @@ import random
 import sqlite3
 from flask import request
 from random import randint
+from log.logger import log_full
 
 def affirmations_realization():
     user_id = request.args.get('id')
@@ -25,7 +26,7 @@ def affirmations_realization():
         except IndexError:
             c.execute(f"DELETE FROM Affirmations_shown WHERE user_id="+user_id)
             conn.commit()
-            print("Not enough affirmations to show, restart table")
+            log_full("Not enough affirmations to show, restart table", "affirmations.py - affirmations_realization")
             af_id = randint(1, max[0])
     c.execute(f"SELECT text FROM Affirmations WHERE id=" + str(af_id))
     text = c.fetchone()

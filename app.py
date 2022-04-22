@@ -2,8 +2,8 @@ from flask import Flask
 from flask import request
 import sqlite3
 from colorama import Fore
-
-import utility.table_gener
+from log.logger import log_full, log_error
+#import utility.table_gener
 import bdCreator
 #realizations
 from realizations.user_exist import user_is_exist
@@ -39,27 +39,27 @@ def hello_world():
 
 @app.route('/updatemoon/', methods=['GET'])
 def upd_moon():
-    print(Fore.RED + "ОТПРАВЛЕН ЗАПРОС НА ОБНОВЛЕНИЕ ТАБЛИЦЫ С ЛУННЫМ КАЛЕНДАРЕМ!!!")
+    log_full("ОТПРАВЛЕН ЗАПРОС НА ОБНОВЛЕНИЕ ТАБЛИЦЫ С ЛУННЫМ КАЛЕНДАРЕМ!!!", "updatemoon")
     if(password == str(request.args.get('pass'))):
-        print(Fore.YELLOW + "пароль подтвержден начинаю обновление!")
+        log_full("пароль подтвержден начинаю обновление!", "updatemoon")
         parse_moon_to_bd()  # запускать раз в год 30-31дек
-        print(Fore.GREEN + "закончил обновление!")
+        log_full("закончил обновление!", "updatemoon")
         return 'Success'
     else:
-        print(Fore.RED + "пароль не верный!")
+        log_error("НАЙДЕНА ПОПЫТКА ЗАПУСТИТЬ ОБНОВЛЕНИЕ ТАБЛИЦЫ, ПАРОЛЬ НЕ ВЕРНЫЙ", "updatemoon")
         return ':('
 
 
 @app.route('/updatehoro/', methods=['GET'])
 def upd_horo():
-    print(Fore.RED + "ОТПРАВЛЕН ЗАПРОС НА ОБНОВЛЕНИЕ ТАБЛИЦЫ С ГОРОСКОПАМИ!!!")
+    log_full("ОТПРАВЛЕН ЗАПРОС НА ОБНОВЛЕНИЕ ТАБЛИЦЫ С ГОРОСКОПАМИ!!!", "updatehoro")
     if(password == str(request.args.get('pass'))):
-        print(Fore.YELLOW + "пароль подтвержден начинаю обновление!")
+        log_full("пароль подтвержден начинаю обновление!", "updatehoro")
         update_horoscope_table() # поставить задачу на ежедневный парс гороскопов заранее
-        print(Fore.GREEN + "закончил обновление!")
+        log_full("закончил обновление!", "updatehoro")
         return 'Success'
     else:
-        print(Fore.RED + "пароль не верный!")
+        log_error("НАЙДЕНА ПОПЫТКА ЗАПУСТИТЬ ОБНОВЛЕНИЕ ТАБЛИЦЫ, ПАРОЛЬ НЕ ВЕРНЫЙ", "updatehoro")
         return ':('
 
 @app.route('/confirm/', methods=['GET'])

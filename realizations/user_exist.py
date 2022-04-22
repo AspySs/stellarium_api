@@ -1,7 +1,6 @@
 from flask import request
 import sqlite3
 
-
 def user_is_exist():
     mail = request.args.get('mail')
     # подключаемся к БД

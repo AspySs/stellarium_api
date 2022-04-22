@@ -1,5 +1,4 @@
 import sqlite3
-
 from colorama import Fore
 
 def tables_check():
@@ -25,19 +24,6 @@ def tables_check():
     c.execute("CREATE TABLE IF NOT EXISTS pifagor_square (num INTEGER, num_count INTEGER, text TEXT )")
     conn.commit()
     print(Fore.BLUE + "Успешно!" + " \n")
-
-    # 1 - capricorn
-    # 2 - taurus
-    # 3 - virgo
-    # 4 - aquarius
-    # 5 - gemini
-    # 6 - libra
-    # 7 - pisces
-    # 8 - cancer
-    # 9 - scorpio
-    # 10 - aries
-    # 11 - leo
-    # 12 - sagittarius
 
     print(Fore.BLUE + "Создание таблицы с гороскопами today" + " \n")
     c.execute("CREATE TABLE IF NOT EXISTS today_horoscopes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, love TEXT, common TEXT, health TEXT, business TEXT )")

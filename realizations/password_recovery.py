@@ -1,10 +1,10 @@
 from flask import request
 import sqlite3
-from colorama import Fore
 from utility.hash_pass import hash_pwd
 import string
 import secrets
 from utility.mail import send_mail_pas_rec
+from log.logger import log_error, log_full
 
 def pass_rec():
     mail = request.args.get('mail')
@@ -19,6 +19,7 @@ def pass_rec():
     c.execute(f"SELECT * FROM Users WHERE mail=?", (mail,))
     data = c.fetchone()
     if (data == None):
+        log_full("User with mail="+str(mail)+" Not found", "pass_rec")
         return "User not found!"
     try:
         c.execute("UPDATE Users SET pass_recovery_code=? WHERE mail=?", (code, mail))
@@ -28,6 +29,7 @@ def pass_rec():
         conn.commit()
         send_mail_pas_rec(mail, code, mail, passw)
     except Exception as e:
+        log_error(str(e), "pass_rec")
         return ("exception")
 
     return "True"
@@ -44,6 +46,7 @@ def activate_pass_rec():
     c.execute(f"SELECT * FROM Users WHERE mail=? AND pass_recovery_code=?", (mail, code))
     data = c.fetchone()
     if (data == None):
+        log_full("User with mail:code = " + str(mail)+":"+str(code)+" Not found", "activate_pass_rec")
         return "User not found!"
 
     try:
@@ -52,7 +55,8 @@ def activate_pass_rec():
         c.execute("UPDATE Users SET password=? WHERE mail=? AND pass_recovery_code=?", (passw[0], mail, code))
         conn.commit()
     except Exception as e:
-        return str(e)
+        log_error(str(e), "activate_pass_rec")
+        return ("exception")
 
     return "Temp password is activated!"
 
@@ -69,6 +73,7 @@ def update_password():
     c.execute(f"SELECT * FROM Users WHERE id=?", (id, ))
     data = c.fetchone()
     if (data == None):
+        log_full("User with id = " +str(id)+ " Not found", "update_password")
         return "User not found!"
 
     try:
@@ -77,6 +82,7 @@ def update_password():
         c.execute("UPDATE Users SET password=? WHERE id=? AND password=?", (new_pass, id, old_pass))
         conn.commit()
     except Exception as e:
-        return str(e)
+        log_error(str(e), "update_password")
+        return ("exception")
 
     return "Password successful updated!"

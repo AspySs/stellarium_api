@@ -1,8 +1,8 @@
 import smtplib                                      # Импортируем библиотеку по работе с SMTP
-from smtplib import SMTPHeloError, SMTPAuthenticationError, SMTPNotSupportedError
 # Добавляем необходимые подклассы - MIME-типы
 from email.mime.multipart import MIMEMultipart      # Многокомпонентный объект
 from email.mime.text import MIMEText                # Текст/HTML
+from log.logger import log_error
 
 def send_mail(addr_to, code):
     addr_from = "stellarium.bot@gmail.com"                # Адресат
@@ -25,12 +25,8 @@ def send_mail(addr_to, code):
     server.set_debuglevel(False)
     try:
         server.login(addr_from, password)
-    except SMTPNotSupportedError:
-        print("SMTPNotSupportedError")
-    except SMTPAuthenticationError:
-        print("SMTPAuthenticationError")
-    except SMTPHeloError:
-        print("SMTPHeloError")
+    except Exception as e:
+        log_error(str(e), "send_mail")
     #server.sendmail(msg)
     server.send_message(msg)                            # Отправляем сообщение
     server.quit()
@@ -45,7 +41,7 @@ def send_mail_pas_rec(addr_to, code, mail, passw):
     msg = MIMEMultipart()                               # Создаем сообщение
     msg['From']    = addr_from                          # Адресат
     msg['To']      = addr_to                            # Получатель
-    msg['Subject'] = 'Подтверждение почты!'                   # Тема сообщения
+    msg['Subject'] = 'Восстановление пароля!'                   # Тема сообщения
 
     main = "Пожалуйста, не отвечайте на данное сообщение, оно отправлено автоматизированной системой, ответа не последует \r "
     link = "\nссылка для активации временного пароля: "+passw+"\n перейдите для активации: " + addr + req
@@ -57,12 +53,8 @@ def send_mail_pas_rec(addr_to, code, mail, passw):
     server.set_debuglevel(False)
     try:
         server.login(addr_from, password)
-    except SMTPNotSupportedError:
-        print("SMTPNotSupportedError")
-    except SMTPAuthenticationError:
-        print("SMTPAuthenticationError")
-    except SMTPHeloError:
-        print("SMTPHeloError")
+    except Exception as e:
+        log_error(str(e), "send_mail_pas_rec")
     #server.sendmail(msg)
     server.send_message(msg)                            # Отправляем сообщение
     server.quit()

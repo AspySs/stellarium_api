@@ -1,5 +1,6 @@
 from flask import request
 import sqlite3
+from log.logger import log_error
 
 def code_confirm():
     code = request.args.get('code')
@@ -10,6 +11,7 @@ def code_confirm():
     try:
         c.execute("UPDATE Users SET proof = 1 WHERE code=?", (code, ))
         conn.commit()
-    except sqlite3.IntegrityError:
+    except Exception as e:
+        log_error(str(e), "code_confirm")
         return "Error"
     return "Success"

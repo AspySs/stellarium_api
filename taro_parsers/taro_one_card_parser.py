@@ -1,6 +1,6 @@
+import os
 import sqlite3
 import time
-
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
@@ -9,7 +9,8 @@ name_work = 'РАБОТА'
 name_brain = 'СОЗНАНИЕ'
 name_love = 'ЛИЧНЫЕ ОТНОШЕНИЯ'
 
-driver = webdriver.Firefox(executable_path='E:\geckodriver.exe')
+path = os.path.dirname(os.path.abspath(__file__))+'\\geckodriver.exe'
+driver = webdriver.Firefox(executable_path=path)
 taro = {}
 conn = sqlite3.connect("/stell.db")
 c = conn.cursor()

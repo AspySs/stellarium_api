@@ -1,11 +1,12 @@
+import os
 import re
 import sqlite3
 import time
-
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
-driver = webdriver.Firefox(executable_path='E:\geckodriver.exe')
+path = os.path.dirname(os.path.abspath(__file__))+'\\geckodriver.exe'
+driver = webdriver.Firefox(executable_path=path)
 conn = sqlite3.connect("/stell.db")
 c = conn.cursor()
 

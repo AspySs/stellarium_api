@@ -1,7 +1,6 @@
 from flask import request
 import sqlite3
 
-
 def horoscope_realization():
     sign = int(request.args.get('sign'))
     # подключаемся к БД

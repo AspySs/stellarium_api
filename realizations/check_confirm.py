@@ -1,6 +1,6 @@
 from flask import request
 import sqlite3
-
+from log.logger import log_error, log_full
 
 def check_confirm():
     user_id = request.args.get('user_id')
@@ -13,8 +13,10 @@ def check_confirm():
         data = c.fetchone()
 
         if data == None:
+            log_full("User with id="+str(user_id)+" Not found", "check_confirm")
             return "Error"
 
-    except sqlite3.IntegrityError:
+    except Exception as e:
+        log_error(str(e), "check_confirm")
         return "Error"
     return str(data[0])

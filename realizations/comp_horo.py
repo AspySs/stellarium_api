@@ -2,8 +2,6 @@ import sqlite3
 from flask import request
 
 
-
-
 def horo_comp_realization():
     first_id = int(request.args.get('first'))
     second_id = int(request.args.get('second'))

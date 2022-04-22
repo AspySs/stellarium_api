@@ -1,8 +1,7 @@
-import random
 import sqlite3
 from flask import request
 import json
-from random import randint
+from log.logger import log_error
 
 def add_affirm_to_liked():
     user_id = request.args.get('user_id')
@@ -20,7 +19,8 @@ def add_affirm_to_liked():
             conn.commit()
         return "True"
     except Exception as e:
-        return str(e)
+        log_error(str(e), "add_affirm_to_liked")
+        return "Error"
 
 def delete_affirm_from_liked():
     user_id = request.args.get('user_id')
@@ -38,7 +38,9 @@ def delete_affirm_from_liked():
             conn.commit()
         return "True"
     except Exception as e:
-        return str(e)
+        log_error(str(e), "delete_affirm_from_liked")
+        return "Error"
+
 def get_affirm_from_liked():
     user_id = request.args.get('user_id')
 

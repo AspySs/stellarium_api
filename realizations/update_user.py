@@ -1,7 +1,6 @@
 from flask import request
 import sqlite3
-from colorama import Fore
-
+from log.logger import log_error
 
 def update_user_by_id():
     user_id = request.args.get('id')
@@ -21,7 +20,6 @@ def update_user_by_id():
     c = conn.cursor()
     # подключили
     try:
-        print(Fore.GREEN + "Обновление записи в бд...")
         if username is not None:
             c.execute(f"UPDATE Users SET user_name=? WHERE id=?", (username, user_id))
         if date is not None:
@@ -39,10 +37,8 @@ def update_user_by_id():
         if password is not None:
             c.execute(f"UPDATE Users SET password=? WHERE id=?", (password, user_id))
         conn.commit()
-        print(Fore.GREEN + "Пользователь обновлен!")
         return str(c.lastrowid)
 
-    except sqlite3.IntegrityError as e:
-        print(Fore.RED + "Обновление записи в бд закончено с ошибкой")
-        print(Fore.YELLOW + "End updating!")
-        return str(e)
+    except Exception as e:
+        log_error(str(e), "update_user_by_id")
+        return ("exception")

@@ -1,6 +1,6 @@
 from flask import request
 import sqlite3
-
+from log.logger import log_error, log_full
 
 def check_uid():
     uid = request.args.get('uid')
@@ -14,9 +14,11 @@ def check_uid():
         data = c.fetchone()
 
         if data == None:
+            log_full("User with google_id:facebook_id=" + str(uid)+":"+ str(uid2) + " Not found", "check_uid")
             return "Error"
 
-    except sqlite3.IntegrityError:
+    except Exception as e:
+        log_error(str(e), "check_uid")
         return "Error"
     if (data[6] == None):
         return "f" + data[7]

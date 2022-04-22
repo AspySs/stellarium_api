@@ -1,6 +1,7 @@
 from flask import request
 from utility.hash_pass import hash_pwd
 import sqlite3
+from log.logger import log_error, log_full
 
 
 def auth_realization():
@@ -17,11 +18,13 @@ def auth_realization():
             c.execute(f"SELECT * FROM Users WHERE google_id =?", (google,))
             data = c.fetchone()
             if (data == None):
+                log_full("User with google=" + str(google) + " Not found", "auth_realization")
                 return "False"
         elif (facebook != None):
             c.execute(f"SELECT * FROM Users WHERE facebook_id =?", (facebook,))
             data = c.fetchone()
             if (data == None):
+                log_full("User with facebook_id=" + str(facebook) + " Not found", "auth_realization")
                 return "False"
         elif ((mail != None) and (password != None)):
             # hash
@@ -29,6 +32,7 @@ def auth_realization():
             c.execute(f"SELECT * FROM Users WHERE mail = ? AND password=?", (mail, password))
             data = c.fetchone()
             if (data == None):
+                log_full("User with mail:pass=" + str(mail)+":"+ str(password) + " Not found", "auth_realization")
                 return "False"
 
         output = {
@@ -41,6 +45,7 @@ def auth_realization():
         }
         return output
 
-    except sqlite3.IntegrityError:
+    except Exception as e:
+        log_error(str(e), "auth_realization")
         return "False"
     return "False"
