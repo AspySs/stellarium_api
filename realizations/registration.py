@@ -3,7 +3,6 @@ import sqlite3
 import string
 import secrets
 from utility.mail import send_mail
-from utility.hash_pass import hash_pwd
 from log.logger import log_error
 
 def register_realization():
@@ -34,8 +33,6 @@ def register_realization():
                 flag = False
 
     try:
-        if(password != None):
-            password = hash_pwd(password)
         add = c.execute(f"INSERT INTO Users (mail, user_name, date_of_birth, sex, horoscope_sign, google_id, facebook_id, password, code, proof) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (mail, username, date, sex, horoscope_id, google, facebook, password, code, proof))
         conn.commit()
         if(proof == 0):

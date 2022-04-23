@@ -1,6 +1,5 @@
 from flask import request
 import sqlite3
-from utility.hash_pass import hash_pwd
 from log.logger import log_error
 
 def update_user_by_id():
@@ -36,7 +35,6 @@ def update_user_by_id():
         if mail is not None:
             c.execute(f"UPDATE Users SET mail=? WHERE id=?", (mail, user_id))
         if password is not None:
-            password = hash_pwd(password)
             c.execute(f"UPDATE Users SET password=? WHERE id=?", (password, user_id))
         conn.commit()
         return str(c.lastrowid)

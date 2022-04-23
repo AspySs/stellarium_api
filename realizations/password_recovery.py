@@ -77,8 +77,6 @@ def update_password():
         return "User not found!"
 
     try:
-        new_pass = hash_pwd(new_pass)
-        old_pass = hash_pwd(old_pass)
         c.execute("UPDATE Users SET password=? WHERE id=? AND password=?", (new_pass, id, old_pass))
         conn.commit()
     except Exception as e:

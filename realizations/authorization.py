@@ -1,5 +1,4 @@
 from flask import request
-from utility.hash_pass import hash_pwd
 import sqlite3
 from log.logger import log_error, log_full
 
@@ -27,8 +26,6 @@ def auth_realization():
                 log_full("User with facebook_id=" + str(facebook) + " Not found", "auth_realization")
                 return "False"
         elif ((mail != None) and (password != None)):
-            # hash
-            password = hash_pwd(password)
             c.execute(f"SELECT * FROM Users WHERE mail = ? AND password=?", (mail, password))
             data = c.fetchone()
             if (data == None):
