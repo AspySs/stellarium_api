@@ -1,2 +1,6 @@
 __pycache__
 .idea
+*.pyc
+realizations/__pycache__/password_recovery.cpython-37.pyc
+realizations/__pycache__/registration.cpython-37.pyc
+realizations/__pycache__/update_user.cpython-37.pyc

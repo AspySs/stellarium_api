@@ -16,15 +16,14 @@ def update_horoscope_table():
     path = ["horo_txts/classic/", "horo_txts/char/"]
 
     files = ["main.txt", "business.txt", "health.txt", "love.txt"]
-    char_files = ["description.txt", "charact.txt", "love.txt", "career.txt"]
     signs = ["aries/", "taurus/", "gemini/", "cancer/", "leo/", "virgo/", "libra/", "scorpio/", "sagittarius/", "capricorn/", "aquarius/", "pisces/"]
     tables = ["today_horoscopes", "next_day_horoscopes", "week_horoscopes", "month_horoscopes", "year_horoscopes", "character_horoscopes"]
     if(os.path.isfile(cur_path + "/" + path[0] + signs[0] + files[0])):
         for i in signs:
             shutil.rmtree(cur_path + "/" + path[0] + i)
             os.mkdir(cur_path + "/" + path[0] + i)
-            shutil.rmtree(cur_path + "/" + path[1] + i)
-            os.mkdir(cur_path + "/" + path[1] + i)
+            # shutil.rmtree(cur_path + "/" + path[1] + i)
+            # os.mkdir(cur_path + "/" + path[1] + i)
 
 
     #включать когда нужно подтянуть новые гороскопы
@@ -107,16 +106,16 @@ def update_horoscope_table():
         conn.commit()
         data.clear()
         id = id+1
-    id = 1
-    for sig in signs:
-        for j in char_files:#"description.txt", "charact.txt", "love.txt", "career.txt"
-            with open(cur_path + "/" + path[1] + sig + j, 'r') as file:
-                for line in file:
-                    string = string + line + "\n"
-            data.append(string)
-            string=""
-
-        c.execute("INSERT INTO character_horoscopes (id, description, charact, love, career) VALUES(?, ?, ?, ?, ?)", (id, data[0], data[1], data[2], data[3]))
-        conn.commit()
-        data.clear()
-        id = id + 1
+    #id = 1
+    # for sig in signs:
+    #     for j in char_files:#"description.txt", "charact.txt", "love.txt", "career.txt"
+    #         with open(cur_path + "/" + path[1] + sig + j, 'r') as file:
+    #             for line in file:
+    #                 string = string + line + "\n"
+    #         data.append(string)
+    #         string=""
+    #
+    #     c.execute("INSERT INTO character_horoscopes (id, description, charact, love, career) VALUES(?, ?, ?, ?, ?)", (id, data[0], data[1], data[2], data[3]))
+    #     conn.commit()
+    #     data.clear()
+    #     id = id + 1

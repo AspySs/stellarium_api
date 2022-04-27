@@ -24,37 +24,37 @@ def get_content(html):
     return horoscope
 
 
-def get_content_character(html):
-    soup = BeautifulSoup(html, 'html.parser')
-    items = soup.find('div', class_='horoscope_text').find_all('p')
-    description = ''
-    charact = ''
-    career = ''
-    love = ''
-    for i in range(0, 16):
-        if i != 2 and i != 3 and i != 7 and i != 12:
-            charact += items[i].get_text() if charact == '' else '\n' + items[i].get_text()
-
-    for i in range(17, 21):
-        description += items[i].get_text() if description == '' else '\n' + items[i].get_text()
-
-    for i in range(21, 26):
-        if i != 22:
-            career += items[i].get_text() if career == '' else '\n' + items[i].get_text()
-
-    for i in range(27, 42):
-        if i != 30 and i != 35:
-            love += items[i].get_text() if love == '' else '\n' + items[i].get_text()
-
-    character = []
-    character.append({
-        'description': description,
-        'charact': charact,
-        'love': love,
-        'career': career
-    })
-
-    return character
+# def get_content_character(html):
+#     soup = BeautifulSoup(html, 'html.parser')
+#     items = soup.find('div', class_='horoscope_text').find_all('p')
+#     description = ''
+#     charact = ''
+#     career = ''
+#     love = ''
+#     for i in range(0, 16):
+#         if i != 2 and i != 3 and i != 7 and i != 12:
+#             charact += items[i].get_text() if charact == '' else '\n' + items[i].get_text()
+#
+#     for i in range(17, 21):
+#         description += items[i].get_text() if description == '' else '\n' + items[i].get_text()
+#
+#     for i in range(21, 26):
+#         if i != 22:
+#             career += items[i].get_text() if career == '' else '\n' + items[i].get_text()
+#
+#     for i in range(27, 42):
+#         if i != 30 and i != 35:
+#             love += items[i].get_text() if love == '' else '\n' + items[i].get_text()
+#
+#     character = []
+#     character.append({
+#         'description': description,
+#         'charact': charact,
+#         'love': love,
+#         'career': career
+#     })
+#
+#     return character
 
 
 def parse():
@@ -86,9 +86,9 @@ def parse():
         html = get_html(url_year)
         horoscope_year.extend(get_content(html.text))
 
-        url_character = 'https://globalmsk.ru/sign/{}'.format(x)
-        html = get_html(url_character)
-        horoscope_character.extend(get_content_character(html.text))
+        # url_character = 'https://globalmsk.ru/sign/{}'.format(x)
+        # html = get_html(url_character)
+        # horoscope_character.extend(get_content_character(html.text))
 
 
     #ЕБАНЫЙ СЫР РАБОТАЕТ - НЕ ТРОГАЙ!!
@@ -96,8 +96,6 @@ def parse():
     time = ["today_", "tomorrow_", "week_", "month_", "year_"]
     files = ["main.txt", "business.txt", "health.txt", "love.txt"]
     types = ["main", "business", "health", "love"]
-    char_types = ["description", "charact", "love", "career"]
-    char_files = ["description.txt", "charact.txt", "love.txt", "career.txt"]
     signs = ["leo/", "virgo/", "aries/", "scorpio/", "taurus/", "libra/", "gemini/", "cancer/", "capricorn/", "aquarius/", "pisces/", "sagittarius/"]
     horoscopes = [horoscope_today, horoscope_tomorrow, horoscope_week, horoscope_month, horoscope_year]
     j = 0
@@ -118,16 +116,4 @@ def parse():
             j = 0
             horo = horo+1
         signs_arr = signs_arr+1
-    signs_arr = 0
-    j = 0
-    for s in signs:
-        for i in char_types:
-            file = open(cur_path + "/" + path[1] + s + char_files[j],'w')
-            file.write(horoscope_character[signs_arr][i])
-            file.close()
-            j = j+1
-            if(j == 4):
-                j = 0
-        j = 0
-        signs_arr = signs_arr + 1
 #этот кусок был написан на коленке хрен знает как, я не ебу как он работает и разбираться не буду
