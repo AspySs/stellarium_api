@@ -17,7 +17,7 @@ def update_horoscope_table():
 
     files = ["main.txt", "business.txt", "health.txt", "love.txt"]
     signs = ["aries/", "taurus/", "gemini/", "cancer/", "leo/", "virgo/", "libra/", "scorpio/", "sagittarius/", "capricorn/", "aquarius/", "pisces/"]
-    tables = ["today_horoscopes", "next_day_horoscopes", "week_horoscopes", "month_horoscopes", "year_horoscopes", "character_horoscopes"]
+    tables = ["today_horoscopes", "next_day_horoscopes", "week_horoscopes", "month_horoscopes", "year_horoscopes"]
     if(os.path.isfile(cur_path + "/" + path[0] + signs[0] + files[0])):
         for i in signs:
             shutil.rmtree(cur_path + "/" + path[0] + i)
@@ -30,18 +30,7 @@ def update_horoscope_table():
     parse()
 
 
-    # 1 - capricorn
-    # 2 - taurus
-    # 3 - virgo
-    # 4 - aquarius
-    # 5 - gemini
-    # 6 - libra
-    # 7 - pisces
-    # 8 - cancer
-    # 9 - scorpio
-    # 10 - aries
-    # 11 - leo
-    # 12 - sagittarius
+
     #очистка
     for i in tables:
         sql = "DELETE FROM "+i+";"
