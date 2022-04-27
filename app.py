@@ -6,6 +6,7 @@ from log.logger import log_full, log_error
 #import utility.table_gener
 import bdCreator
 #realizations
+from realizations.get_current_year import get_current_year
 from realizations.user_exist import user_is_exist
 from realizations.affirm_like import add_affirm_to_liked, delete_affirm_from_liked, get_affirm_from_liked
 from realizations.authorization import auth_realization
@@ -178,5 +179,9 @@ def act_recovery():
 def pass_update():
     return (update_password())
 
+@app.route('/get_current_year', methods=['GET'])
+def get_year():
+    return get_current_year()
+
 if __name__ == '__main__':
-    app.run(host="192.168.1.105", port=5000)
+    app.run(host="192.168.1.148", port=5000)
