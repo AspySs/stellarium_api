@@ -6,11 +6,24 @@ def pifagor_realization():
     day = int(request.args.get('day'))
     month = int(request.args.get('month'))
     year = int(request.args.get('year'))
+    firstWorkNumber = 0
+    secondWorkNumber = 0
+    fourthWorkNumber = 0
 
-    firstWorkNumber = day//10 + day%10 + month//10 + month%10 + year//1000 + ((year//100)%10) + ((year%100)//10) + (year%10)
-    secondWorkNumber =  firstWorkNumber//10 + firstWorkNumber%10
-    thirdWorkNumber = (firstWorkNumber - 2)* (day//10)
-    fourthWorkNumber = thirdWorkNumber//10 + thirdWorkNumber%10
+    for i in range(0, len(str(day))):
+        firstWorkNumber += int(str(day)[i])
+    for i in range(0, len(str(month))):
+        firstWorkNumber += int(str(month)[i])
+    for i in range(0, len(str(year))):
+        firstWorkNumber += int(str(year)[i])
+
+    for i in range(0, len(str(firstWorkNumber))):
+        secondWorkNumber += int(str(firstWorkNumber)[i])
+    thirdWorkNumber = abs(firstWorkNumber - (2 * int(str(day)[0])))
+
+    for i in range(0, len(str(thirdWorkNumber))):
+        fourthWorkNumber += int(str(thirdWorkNumber)[i])
+
     resultStr = str(day) + str(month) + str(year) + str(firstWorkNumber) + str(secondWorkNumber) + str(thirdWorkNumber) + str(fourthWorkNumber)
     result = list(range(0,10))
     for i in range(0,len(result)):
